@@ -36,7 +36,7 @@ int isPortOpen(const char *ip, int port) {
         FD_SET(sockfd, &write_fds);
 
         struct timeval timeout;
-        timeout.tv_sec = 1;  // 1-second timeout
+        timeout.tv_sec = 2;  // 1-second timeout
         timeout.tv_usec = 0;
 
         result = select(sockfd + 1, NULL, &write_fds, NULL, &timeout);

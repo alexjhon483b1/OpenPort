@@ -21,22 +21,19 @@ iterate_ip_range() {
 
   for ((i = start_ip; i <= end_ip; i++)); do
     echo $(int_to_ip $i)
-    
-       
-# Run your command or program here
-./port $(int_to_ip $i) 443
-
-# Check the exit code
-if [ $? -eq 0 ]; then
-    echo "Command succeeded (exit code 0)"
-    echo $(int_to_ip $i) >> iplist.txt
-else
-    echo "Command failed (exit code $?)"
-fi
-       
   done
 }
 
 # Example usage: iterate_ip_range <start_ip> <end_ip>
-iterate_ip_range "142.250.195.142" "142.250.196.142"
+start_ip="103.221.255.104"
+end_ip="103.222.255.104"
+
+# Create a temporary file for the IP list
+tmp_ip_list=$(mktemp)
+
+# Run the command in parallel with 120 IP addresses at a time
+iterate_ip_range "$start_ip" "$end_ip" | parallel -j 10000 ./port {} 135
+
+# Clean up the temporary file
+rm -f "$tmp_ip_list"
 
