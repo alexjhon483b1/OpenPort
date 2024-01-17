@@ -24,11 +24,12 @@ iterate_ip_range() {
     
        
 # Run your command or program here
-./port $(int_to_ip $i) 43
+./port $(int_to_ip $i) 443
 
 # Check the exit code
 if [ $? -eq 0 ]; then
     echo "Command succeeded (exit code 0)"
+    echo $(int_to_ip $i) >> iplist.txt
 else
     echo "Command failed (exit code $?)"
 fi
@@ -37,5 +38,5 @@ fi
 }
 
 # Example usage: iterate_ip_range <start_ip> <end_ip>
-iterate_ip_range "192.168.0.1" "192.168.0.10"
+iterate_ip_range "142.250.195.142" "142.250.196.142"
 
