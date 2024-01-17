@@ -1,5 +1,5 @@
 sudo apt-get install parallel
 
-./your_program | tee -a iplist.txt
+./run.sh | tee -a iplist.txt
 
 cat iplist.txt | grep open
