@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
         printf("Port %d on %s is open.\n", port, ip);
     } else if (result == 0) {
         printf("Port %d on %s is closed.\n", port, ip);
+        return EXIT_FAILURE;
     } else {
         fprintf(stderr, "Error checking port status.\n");
         return EXIT_FAILURE;
